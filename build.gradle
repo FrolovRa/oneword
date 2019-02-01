@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group 'net.test_webapp'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+compileJava.options.encoding = "UTF-8"
+
+dependencies {
+    compile 'org.hibernate:hibernate-core:5.4.1.Final'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.5'
+    compile group: 'javax', name: 'javaee-api', version: '8.0'
+}
