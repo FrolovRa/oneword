@@ -18,7 +18,9 @@ import java.io.IOException;
 
 @WebServlet(name = "addPostServlet")
 public class AddPostServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String word = request.getParameter("word");
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
@@ -32,9 +34,11 @@ public class AddPostServlet extends HttpServlet {
 
         session.setAttribute("user", u);
         response.sendRedirect("/my-page");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         UserDao dao = new UserDaoImpl();
         HttpSession session = request.getSession();
 
@@ -43,5 +47,6 @@ public class AddPostServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/mypage.jsp");
         dispatcher.forward(request, response);
+
     }
 }

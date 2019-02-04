@@ -1,4 +1,4 @@
-package beans;
+package app;
 
 import entities.Post;
 import entities.User;

@@ -30,6 +30,7 @@ public class Post {
             joinColumns = { @JoinColumn(name = "post_id") },
             inverseJoinColumns = { @JoinColumn(name = "user_id") }
     )
+
     private Set<User> liked = new HashSet<>();
 
     public Set<User> getLiked() {
@@ -81,12 +82,9 @@ public class Post {
         return word;
     }
 
-
-
     @Override
     public String toString() {
         return  "Time: " + date.getHour() + ":" + date.getMinute();
-
     }
 
     @Override

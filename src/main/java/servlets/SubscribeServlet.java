@@ -14,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "SubscribeServlet")
 public class SubscribeServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("subscribe"));
 
@@ -25,15 +26,16 @@ public class SubscribeServlet extends HttpServlet {
         User u = dao.getUser(id);
 
         if (request.getParameter("cancel") == null){
+
             dao.subscribe(su, u);
             response.getWriter().print(u.getFollowers().size() + 1);
+
         } else {
+
             dao.unsubscribe(su, u);
             response.getWriter().print(u.getFollowers().size() - 1);
+
         }
-}
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
+
 }

@@ -4,6 +4,9 @@ package servlets;
 import dao.UserDao;
 import dao.UserDaoImpl;
 import entities.User;
+import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,23 +18,34 @@ import java.io.IOException;
 
 @WebServlet(name = "signingServlet")
 public class SigningServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String username = request.getParameter("name");
         String pass = request.getParameter("pass");
 
         User user = new User(username, pass);
         UserDao dao = new UserDaoImpl();
 
-        user.setId(dao.addUser(user));
+        try {
 
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
+            user.setId(dao.addUser(user));
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            response.sendRedirect("/my-page");
 
-        response.sendRedirect("/my-page");
+        } catch (ConstraintViolationException ex) {
+
+            request.setAttribute("username", username);
+            doGet(request, response);
+
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
         dispatcher.forward(request, response);
+
     }
 }

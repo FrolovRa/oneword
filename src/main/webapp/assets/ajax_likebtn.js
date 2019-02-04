@@ -23,9 +23,8 @@ function like(obj){
             }
         });
     }
-
-
 }
+
 function changeBackground(obj) {
   if (obj.style.backgroundImage === 'url("/assets/icon-heart-on.png")'){
       obj.removeAttribute("style");

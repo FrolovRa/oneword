@@ -1,6 +1,6 @@
 <%@ page import="entities.User" %>
 <%@ page import="entities.Post" %>
-<%@ page import="beans.Feed" %>
+<%@ page import="app.Feed" %>
 <%@ page import="java.util.Set" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../assets/script.js"></script>
     <script type="text/javascript" src="../assets/ajax_likebtn.js"></script>
     <script type="text/javascript" src="../assets/ajax_search.js"></script>
+    <script type="text/javascript" src="../assets/ajax_subscribe.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -51,10 +52,10 @@
                 out.print(u.getUsername());
 //                Set<Post> feed = Feed.generate(u);
             %></div>
-            <div><%
+            <div class="follows" onclick="openFollows()"><%
                 out.print("Followers " + u.getFollowers().size());
             %></div>
-            <div><%
+            <div class="following" onclick="openFollowing()"><%
                 out.print("Following " + u.getFollowing().size());
             %></div>
         </div>
@@ -91,7 +92,7 @@
                         }
                         out.print(
                                 "             >\n " +
-                                        "            </div>\n" + "<div class=\"like_count\"> " +
+                                        "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked($(this).parent())\"> " +
                                         p.getLiked().size() +
                                         "            </div>" +
                                         "            <p class=\"content\">" + p.getWord() + "</p>\n" +
@@ -132,6 +133,15 @@
         </div>
         </div>
     </div>
+<div class="follows_following_window" data-id="<%out.print(u.getId());%>">
+    <div class="window">
+        <div class="window_header">
+            <h5></h5>
+        </div>
+        <div class="window_content">
+        </div>
+    </div>
+</div>
 </body>
 </html>
 

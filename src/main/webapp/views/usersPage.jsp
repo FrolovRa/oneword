@@ -48,10 +48,10 @@
                 User u = (User) request.getAttribute("user");
                 out.print(u.getUsername());
             %></div >
-            <div id="followers"><%
+            <div id="followers" class="follows" onclick="openFollows()"><%
                 out.print("Followers " + u.getFollowers().size());
             %></div>
-            <div id="following"><%
+            <div id="following" class="following" onclick="openFollowing()"><%
                 out.print("Following " + u.getFollowing().size());
             %></div>
         </div>
@@ -80,7 +80,7 @@
                         }
                         out.print(
                                 "             >\n " +
-                                "            </div>\n" + "<div class=\"like_count\"> " +
+                                "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked($(this).parent())\"> " +
                                                 p.getLiked().size() +
                                 "            </div>" +
                                 "            <p class=\"content\">" + p.getWord() + "</p>\n" +
@@ -91,6 +91,15 @@
                     }
                 }
             %>
+        </div>
+    </div>
+</div>
+<div class="follows_following_window" data-id="<%out.print(u.getId());%>">
+    <div class="window">
+        <div class="window_header">
+            <h5></h5>
+        </div>
+        <div class="window_content">
         </div>
     </div>
 </div>

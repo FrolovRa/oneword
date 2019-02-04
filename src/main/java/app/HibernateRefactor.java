@@ -1,4 +1,4 @@
-package beans;
+package app;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;

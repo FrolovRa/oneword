@@ -10,8 +10,6 @@
         <property name="connection.password">1</property>
         <property name="connection.pool_size">5</property>
         <property name="hibernate.current_session_context_class">thread</property>
-        <!-- DB schema will be updated if needed -->
-        <!-- <property name="hbm2ddl.auto">update</property> -->
         <mapping class="entities.User"/>
         <mapping class="entities.Post"/>
 

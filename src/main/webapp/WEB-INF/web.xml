@@ -70,4 +70,13 @@
         <servlet-name>subscribe</servlet-name>
         <url-pattern>/subscribe</url-pattern>
     </servlet-mapping>
+    <!--subscribe ajax-->
+    <servlet>
+        <servlet-name>popupWindow</servlet-name>
+        <servlet-class>servlets.ShowPopupServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>popupWindow</servlet-name>
+        <url-pattern>/popup</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -7,16 +7,18 @@ import entities.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+@WebServlet(name = "LoginServlet")
 public class LoginServlet extends javax.servlet.http.HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(true);
 
+        HttpSession session = request.getSession(true);
         String username = request.getParameter("name");
         String pass = request.getParameter("pass");
 
@@ -25,16 +27,21 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
 
         if(user != null){
             if( user.getUsername().equals(username) & user.getPassword().equals(pass)){
+
                 session.setAttribute("user", user);
                 response.sendRedirect("/my-page");
-            }else {
+
+            } else {
+
                 request.setAttribute("userName", "not correct password or username");
                 doGet(request,response);
+
             }
-        }
-        else {
+        } else {
+
             request.setAttribute("userName", username);
             doGet(request, response);
+
         }
 
     }

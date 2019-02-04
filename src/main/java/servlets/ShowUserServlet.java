@@ -15,11 +15,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ShowUserServlet")
 public class ShowUserServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String pathInfo = request.getPathInfo();
         int id = Integer.valueOf(pathInfo.substring(1));
 
@@ -29,16 +27,16 @@ public class ShowUserServlet extends HttpServlet {
         User su = (User) session.getAttribute("user");
 
         if(su.getId() == id) {
+
             response.sendRedirect("/my-page");
+
         } else {
+
             User u = dao.getUser(id);
             request.setAttribute("user", u);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/usersPage.jsp");
             dispatcher.forward(request, response);
+
         }
-
-
-
-
     }
 }

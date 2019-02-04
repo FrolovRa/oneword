@@ -101,6 +101,7 @@ public class User {
     public void setFavorite(Set<Post> favorite) {
         this.favorite = favorite;
     }
+
     @Override
     public String toString() {
         return "username: " + username
@@ -120,7 +121,6 @@ public class User {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(id);
     }
 }
