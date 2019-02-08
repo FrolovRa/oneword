@@ -23,11 +23,11 @@
     </servlet-mapping>
     <!--my page servlet-->
     <servlet>
-        <servlet-name>mypage</servlet-name>
-        <servlet-class>servlets.AddPostServlet</servlet-class>
+        <servlet-name>myPage</servlet-name>
+        <servlet-class>servlets.CrudPostServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>mypage</servlet-name>
+        <servlet-name>myPage</servlet-name>
         <url-pattern>/my-page</url-pattern>
     </servlet-mapping>
     <!--like event-->

@@ -30,6 +30,7 @@ body {
     transform: translate(-50%, -80%);
 }
 .wrapperUser {
+    width: 550px;
   position: absolute;
     top: 50%;
     left: 50%;
@@ -37,6 +38,7 @@ body {
 }
 
 .frame_container {
+    display: flex;
   overflow-y: scroll;
   margin-top: 10px;
 }
@@ -343,4 +345,13 @@ div#userInfo > div  {
 
 .window_follow {
     padding: 3 20.54 3 20.54;
+}
+
+.left_part_frames {
+    overflow-y: scroll;
+    width: 50%;
+}
+.right_part_frames {
+    overflow-y: scroll;
+    width: 50%;
 }

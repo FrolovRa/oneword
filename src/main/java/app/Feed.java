@@ -5,11 +5,13 @@ import entities.User;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Feed {
-    static public Set<Post> generate(User sessionUser) {
+    static public SortedSet<Post> generate(User sessionUser) {
 
-        Set<Post> feed = new HashSet<>(sessionUser.getPosts());
+        SortedSet<Post> feed = new TreeSet<>(sessionUser.getPosts());
 
         for (User foll:sessionUser.getFollowing()) {
             feed.addAll(foll.getPosts());

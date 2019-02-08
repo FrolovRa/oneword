@@ -2,6 +2,7 @@
 <%@ page import="entities.Post" %>
 <%@ page import="app.Feed" %>
 <%@ page import="java.util.Set" %>
+<%@ page import="app.TimeOfPublications" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -50,7 +51,7 @@
             <div><%
                 User u = (User) session.getAttribute("user");
                 out.print(u.getUsername());
-//                Set<Post> feed = Feed.generate(u);
+                Set<Post> feed = Feed.generate(u);
             %></div>
             <div class="follows" onclick="openFollows()"><%
                 out.print("Followers " + u.getFollowers().size());
@@ -76,15 +77,16 @@
             </form>
         </div>
         <div class="frame_container">
+            <div class="left_part_frames">
             <%
                 if(u.getPosts().isEmpty()) {
                     out.print("<p style='text-align: center'> do not have words yet </p>");
                 } else {
                     for (Post p:u.getPosts()) {
                         out.print("<div class=\"frame\">\n" +
-                                "           <p> Time " +
-                                p.getDate().getHour() +":"+ p.getDate().getMinute() +
-                                "           </p>\n" +
+                                "           <p> " +
+                                        TimeOfPublications.getTimeDifference(p.getDate()) +
+                                "          </p>\n" +
                                 "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
                                 "            <div class=\"like\" onclick=\"like(this)\" ");
                         if (u.getFavorite().contains(p)){
@@ -103,33 +105,36 @@
                     }
                 }
             %>
-                <%--<%--%>
-                    <%--if(feed.isEmpty()) {--%>
-                        <%--out.print("<p style='text-align: center'> do not have words yet </p>");--%>
-                    <%--} else {--%>
-                        <%--for (Post p:feed) {--%>
-                            <%--out.print("<div class=\"frame\">\n" +--%>
-                                    <%--"           <p> Time " +--%>
-                                    <%--p.getDate().getHour() +":"+ p.getDate().getMinute() +--%>
-                                    <%--"           </p>\n" +--%>
-                                    <%--"          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +--%>
-                                    <%--"            <div class=\"like\" onclick=\"like(this)\" ");--%>
-                            <%--if (u.getFavorite().contains(p)){--%>
-                                <%--out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");--%>
-                            <%--}--%>
-                            <%--out.print(--%>
-                                    <%--"             >\n " +--%>
-                                            <%--"            </div>\n" + "<div class=\"like_count\"> " +--%>
-                                            <%--p.getLiked().size() +--%>
-                                            <%--"            </div>" +--%>
-                                            <%--"            <p class=\"content\">" + p.getWord() + "</p>\n" +--%>
-                                            <%--"            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +--%>
-                                            <%--"          </div>\n" +--%>
-                                            <%--"        </div>");--%>
+            </div>
+            <div class="right_part_frames">
+                <%
+                if(feed.isEmpty()) {
+                out.print("<p style='text-align: center'> do not have words yet </p>");
+                } else {
+                for (Post p:feed) {
+                out.print("<div class=\"frame\">\n" +
+                "           <p> Time " +
+                        TimeOfPublications.getTimeDifference(p.getDate()) +
+                "           </p>\n" +
+                "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
+                "            <div class=\"like\" onclick=\"like(this)\" ");
+                if (u.getFavorite().contains(p)){
+                out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");
+                }
+                out.print(
+                "             >\n " +
+                "            </div>\n" + "<div class=\"like_count\"> " +
+                p.getLiked().size() +
+                "            </div>" +
+                "            <p class=\"content\">" + p.getWord() + "</p>\n" +
+                "            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +
+                "          </div>\n" +
+                "        </div>");
 
-                        <%--}--%>
-                    <%--}--%>
-                <%--%>--%>
+                }
+                }
+                %>
+            </div>
         </div>
         </div>
     </div>

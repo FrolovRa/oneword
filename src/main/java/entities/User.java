@@ -16,9 +16,9 @@ public class User {
 
     private String password;
 
-
+    @OrderBy("date")
     @OneToMany(mappedBy = "owner_id", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<Post> posts;
+    private SortedSet<Post> posts = new TreeSet<>();
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     @JoinTable(
@@ -41,7 +41,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        posts = new HashSet<>();
+        posts = new TreeSet<>();
         following = new HashSet<>();
         followers = new HashSet<>();
     }
@@ -70,11 +70,11 @@ public class User {
         this.id = id;
     }
 
-    public Set<Post> getPosts() {
+    public SortedSet<Post> getPosts() {
         return posts;
     }
 
-    public void setPosts(Set<Post> posts) {
+    public void setPosts(SortedSet<Post> posts) {
         this.posts = posts;
     }
 

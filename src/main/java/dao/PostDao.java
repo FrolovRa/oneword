@@ -7,6 +7,8 @@ public interface PostDao {
 
     void addPost(Post post);
 
+    void removePost(Post post);
+
     Post getPost(int id);
 
     void like(User user, Post post);

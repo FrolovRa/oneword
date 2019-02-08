@@ -16,12 +16,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebServlet(name = "addPostServlet")
-public class AddPostServlet extends HttpServlet {
+@WebServlet(name = "CrudPostServlet")
+public class CrudPostServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.setCharacterEncoding("utf8");
         String word = request.getParameter("word");
+
+        System.out.println(word);
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
         Post post = new Post(word);

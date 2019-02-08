@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "publications")
-public class Post {
+public class Post implements Comparable<Post>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,4 +101,8 @@ public class Post {
         return Objects.hash(postId, owner_id);
     }
 
+    @Override
+    public int compareTo(Post o) {
+        return o.getDate().compareTo(date);
+    }
 }

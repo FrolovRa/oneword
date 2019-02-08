@@ -3,7 +3,7 @@ var postQuantity;
 
 function fitting(postH, postQuantity, maxHeight){
     if( postH * postQuantity <= maxHeight || postQuantity === 0) {
-        $(".frame_container").height(postH * postQuantity + postQuantity * 25)
+        $(".frame_container").height(postH * postQuantity + postQuantity + 25)
     } else {
         $(".frame_container").height(maxHeight)
     }
@@ -82,6 +82,7 @@ $(document).ready(function(){
         if (container.has(e.target).length === 0){
             $(".search_result").hide();
             $(".follows_following_window").hide("fast");
+            $(".window_content").children().remove();
         }
     });
 
@@ -89,14 +90,14 @@ $(document).ready(function(){
     // making application fit the windows after documets ready
     postH = $(".frame").height();
     postQuantity = $(".frame").length;
-    let maxHeightFrameContainer = $( window ).height() - 163 - 50;
+    let maxHeightFrameContainer = $( window ).height() - 163 - 70;
     fitting(postH, postQuantity, maxHeightFrameContainer);
 });
 
 
     // resize frame container in case of resizing window
 $(window).resize(function(){
-    let maxHeightFrameContainer = $( window ).height() - 163 - 50;
+    let maxHeightFrameContainer = $( window ).height() - 163 - 70;
     fitting(postH, postQuantity, maxHeightFrameContainer);
 });
 

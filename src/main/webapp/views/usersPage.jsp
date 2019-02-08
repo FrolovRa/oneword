@@ -1,5 +1,6 @@
 <%@ page import="entities.User" %>
 <%@ page import="entities.Post" %>
+<%@ page import="app.TimeOfPublications" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -70,8 +71,8 @@
                 } else {
                     for (Post p:u.getPosts()) {
                         out.print("<div class=\"frame\">\n" +
-                                "           <p> Time " +
-                                p.getDate().getHour() +":"+ p.getDate().getMinute() +
+                                "           <p>" +
+                                TimeOfPublications.getTimeDifference(p.getDate()) +
                                 "           </p>\n" +
                                 "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
                                 "            <div class=\"like\" onclick=\"like(this)\" ");
