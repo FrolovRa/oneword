@@ -28,24 +28,18 @@ public class SigningServlet extends HttpServlet {
         UserDao dao = new UserDaoImpl();
 
         try {
-
             user.setId(dao.addUser(user));
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
             response.sendRedirect("/my-page");
-
         } catch (ConstraintViolationException ex) {
-
             request.setAttribute("username", username);
             doGet(request, response);
-
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         RequestDispatcher dispatcher = request.getRequestDispatcher("signin.jsp");
         dispatcher.forward(request, response);
-
     }
 }

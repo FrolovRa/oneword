@@ -16,6 +16,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/*
+ *
+ * Servlet for handling request from "/my-page" URL
+ *
+ * method doGet return a refreshed session user
+ * method doPost create and put a post object to database
+ *
+ */
+
 @WebServlet(name = "CrudPostServlet")
 public class CrudPostServlet extends HttpServlet {
 
@@ -23,9 +32,9 @@ public class CrudPostServlet extends HttpServlet {
         request.setCharacterEncoding("utf8");
         String word = request.getParameter("word");
 
-        System.out.println(word);
         HttpSession session = request.getSession();
         User u = (User) session.getAttribute("user");
+
         Post post = new Post(word);
         PostDao dao = new PostDaoImpl();
 
@@ -36,11 +45,9 @@ public class CrudPostServlet extends HttpServlet {
 
         session.setAttribute("user", u);
         response.sendRedirect("/my-page");
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         UserDao dao = new UserDaoImpl();
         HttpSession session = request.getSession();
 
@@ -49,6 +56,5 @@ public class CrudPostServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/views/mypage.jsp");
         dispatcher.forward(request, response);
-
     }
 }

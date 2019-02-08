@@ -10,6 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+ *
+ * Servlet for handling request from "/search" and "/users/search" URL
+ *
+ * method doPost receive data from ajax and response with users information that match request
+ *
+ */
+
 @WebServlet(name = "SearchUserServlet")
 public class SearchUserServlet extends HttpServlet {
 
@@ -21,7 +29,6 @@ public class SearchUserServlet extends HttpServlet {
         StringBuilder result = new StringBuilder();
 
         for (User u:dao.searchUser(search)) {
-
             result.append("<li class=\"search_result_user\"><a");
             result.append(" href='/users/");
             result.append(u.getId());
@@ -30,7 +37,6 @@ public class SearchUserServlet extends HttpServlet {
             result.append("' >");
             result.append(u.getUsername());
             result.append("</a></li>");
-
         }
         response.getWriter().write(result.toString());
     }

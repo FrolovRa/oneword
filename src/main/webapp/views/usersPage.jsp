@@ -64,7 +64,7 @@
             } else out.print("follow");
             %></button>
         </div>
-        <div class="frame_container">
+        <div class="frame_container only_users_post">
             <%
                 if(u.getPosts().isEmpty()) {
                     out.print("<p style='text-align: center'> do not have words yet </p>");
@@ -88,7 +88,6 @@
                                 "            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +
                                 "          </div>\n" +
                                 "        </div>");
-
                     }
                 }
             %>

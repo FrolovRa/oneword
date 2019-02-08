@@ -10,7 +10,6 @@ import java.util.TreeSet;
 
 public class Feed {
     static public SortedSet<Post> generate(User sessionUser) {
-
         SortedSet<Post> feed = new TreeSet<>(sessionUser.getPosts());
 
         for (User foll:sessionUser.getFollowing()) {

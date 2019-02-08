@@ -105,7 +105,7 @@ function validateForm() {
     $(".text-error").remove();
     // $(".star_char").hide();
 
-    // Проверка логина
+    // login validation
     let v_login = false;
 
     let login = $("#login");
@@ -115,7 +115,7 @@ function validateForm() {
     }
     login.toggleClass('error_form', v_login);
 
-    // Проверка паролей
+    // password validation
     let password = $("#password_input");
     let passwordConfirm = $("#password_input_confirm");
 
@@ -129,8 +129,8 @@ function validateForm() {
          v_pass1 = true;
         $(".error_content").append('<p class="text-error">password must be at least 6 characters</p>');
     }
+
     password.toggleClass('error_form', v_pass1);
     passwordConfirm.toggleClass('error_form', v_pass2);
-
     return (v_login || v_pass1 || v_pass2);
 }

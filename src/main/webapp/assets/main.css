@@ -355,3 +355,8 @@ div#userInfo > div  {
     overflow-y: scroll;
     width: 50%;
 }
+
+.only_users_post {
+    display: block !important;
+    margin: 0 auto !important;
+}

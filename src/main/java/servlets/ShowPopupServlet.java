@@ -25,29 +25,29 @@ public class ShowPopupServlet extends HttpServlet {
 
         User sessionUser = (User) request.getSession().getAttribute("user");
 
-
         StringBuilder result = new StringBuilder();
 
-        if (query.equals("follows")) {
-
-            UserDao dao = new UserDaoImpl();
-            userSet = dao.getUser(id).getFollowers();
-
-        } else if (query.equals("following")){
-
-            UserDao dao = new UserDaoImpl();
-            userSet = dao.getUser(id).getFollowing();
-
-        } else {
-
-            PostDao dao = new PostDaoImpl();
-            userSet = dao.getPost(id).getLiked();
+        switch (query) {
+            case "follows": {
+                UserDao dao = new UserDaoImpl();
+                userSet = dao.getUser(id).getFollowers();
+                break;
+            }
+            case "following": {
+                UserDao dao = new UserDaoImpl();
+                userSet = dao.getUser(id).getFollowing();
+                break;
+            }
+            default: {
+                PostDao dao = new PostDaoImpl();
+                userSet = dao.getPost(id).getLiked();
+                break;
+            }
         }
 
         for (User f : userSet) {
             result.append("<div class=\"window_user\">\n" +
-                        "            <div class=\"window_user_name\"> <a href=\"");
-            result.append("/users/");
+                        "            <div class=\"window_user_name\"> <a href=\"/users/");
             result.append(f.getId());
             result.append("\">");
             result.append(f.getUsername());
@@ -64,10 +64,8 @@ public class ShowPopupServlet extends HttpServlet {
             } else {
                 result.append("follow");
             }
-            result.append("</div>\n" +
-                        "          </div>");
+            result.append("</div>\n" + "</div>");
         }
-
         response.getWriter().write(result.toString());
     }
 }

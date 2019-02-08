@@ -27,16 +27,12 @@ public class ShowUserServlet extends HttpServlet {
         User su = (User) session.getAttribute("user");
 
         if(su.getId() == id) {
-
             response.sendRedirect("/my-page");
-
         } else {
-
             User u = dao.getUser(id);
             request.setAttribute("user", u);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/usersPage.jsp");
             dispatcher.forward(request, response);
-
         }
     }
 }

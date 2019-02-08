@@ -14,7 +14,7 @@
 
   <div>       <!-- content -->
       <div>    <!-- buttons holder -->
-        <form action="/a" method="post">
+        <form action="${pageContext.request.contextPath}/login" method="post">
                 <label><h4>Username</h4></label>
                 <input class="login_input" type="text" placeholder="enter username" name="name"><br />
                 <label><h4>Password</h4></label>
