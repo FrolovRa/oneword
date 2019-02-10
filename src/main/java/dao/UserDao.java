@@ -1,7 +1,10 @@
 package dao;
 
 import entities.User;
+
+import javax.ejb.Local;
 import java.util.List;
+
 
 public interface UserDao {
 

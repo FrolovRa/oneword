@@ -85,7 +85,8 @@
                                                 p.getLiked().size() +
                                 "            </div>" +
                                 "            <p class=\"content\">" + p.getWord() + "</p>\n" +
-                                "            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +
+                                        "            <div class=\"username_wrapper\"><h6 class=\"username\">"
+                                        + p.getOwner_id().getUsername() + "</h6> </div>"  +
                                 "          </div>\n" +
                                 "        </div>");
                     }

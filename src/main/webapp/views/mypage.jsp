@@ -63,7 +63,7 @@
         <div class="add-post">
             <form method="post">
                 <div id="label_input">Enter the word</div>
-                <div id="input_word"><input id="word_input" autocomplete="off" type="text" placeholder="here!" name="word"></div>
+                <div id="input_word"><input id="word_input"  maxlength="20" autocomplete="off" type="text" placeholder="here!" name="word"></div>
                 <div id="btn_send"><button id="sendWord" type="submit"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 224 224" style=" fill:#000000;">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
                        text-anchor="none" style="mix-blend-mode: normal">
@@ -99,7 +99,8 @@
                                         p.getLiked().size() +
                                         "            </div>" +
                                         "            <p class=\"content\">" + p.getWord() + "</p>\n" +
-                                        "            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +
+                                        "            <div class=\"username_wrapper\"><h6 class=\"username\">"
+                                        + p.getOwner_id().getUsername() + "</h6> </div>"  +
                                         "          </div>\n" +
                                         "        </div>");
 
@@ -112,27 +113,27 @@
                 if(feed.isEmpty()) {
                 out.print("<p style='text-align: center'> do not have words yet </p>");
                 } else {
-                for (Post p:feed) {
-                out.print("<div class=\"frame\">\n" +
+                    for (Post p:feed) {
+                        out.print("<div class=\"frame\">\n" +
                 "           <p> Time " +
                         TimeOfPublications.getTimeDifference(p.getDate()) +
                 "           </p>\n" +
                 "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
                 "            <div class=\"like\" onclick=\"like(this)\" ");
-                if (u.getFavorite().contains(p)){
-                out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");
+                            if (u.getFavorite().contains(p)){
+                                out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");
                 }
-                out.print(
+                        out.print(
                 "             >\n " +
                 "            </div>\n" + "<div class=\"like_count\"> " +
-                p.getLiked().size() +
+                            p.getLiked().size() +
                 "            </div>" +
                 "            <p class=\"content\">" + p.getWord() + "</p>\n" +
-                "            <h6 class=\"username\">" + p.getOwner_id().getUsername() + "</h6>\n" +
+                "            <div class=\"username_wrapper\"><h6 class=\"username\">"
+                            + p.getOwner_id().getUsername() + "</h6> </div>"  +
                 "          </div>\n" +
                 "        </div>");
-
-                }
+                    }
                 }
                 %>
             </div>

@@ -191,9 +191,14 @@ div#userInfo > div  {
 }
 
 .username {
-  position: absolute;
-  left: 190px;
-  top: 8px;
+    text-align: right;
+}
+
+.username_wrapper {
+    width: 150px;
+    position: absolute;
+    left: 70px;
+    top: 9px;
 }
 
 .content {

@@ -1,6 +1,7 @@
 package entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -8,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "publications")
-public class Post implements Comparable<Post>{
+public class Post implements Serializable, Comparable<Post>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

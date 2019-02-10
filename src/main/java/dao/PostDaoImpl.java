@@ -5,6 +5,8 @@ import entities.Post;
 import entities.User;
 import org.hibernate.Session;
 
+import javax.ejb.Stateless;
+
 
 public class PostDaoImpl implements PostDao {
 

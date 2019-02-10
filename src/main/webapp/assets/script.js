@@ -175,3 +175,11 @@ function hidePost(post) {
         margin:0
     },500)
 }
+
+$(function() {
+    let txt = $("#word_input");
+    let func = function() {
+        txt.val(txt.val().replace(/\s/g, ''));
+    };
+    txt.keyup(func).blur(func);
+});
