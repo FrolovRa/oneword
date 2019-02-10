@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
 @import url('https://fonts.googleapis.com/css?family=BenchNine:300');
 @import url('https://fonts.googleapis.com/css?family=Raleway:200,300');
+
 *{
   padding: 0;
   margin: 0;
@@ -35,6 +36,18 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.rmv_btn {
+    background-image: url("../assets/remove-icon.png");
+    background-size: contain;
+    position: absolute;
+    top: 4px;
+    left: 220px;
+    width: 25px;
+    height: 25px;
+    display: none;
+    cursor: pointer;
 }
 
 .frame_container {
@@ -143,8 +156,7 @@ div#userInfo > div  {
 
 
 .frame {
-    /*margin: auto;*/
-    margin-top: 20px;
+    margin: 20px auto auto;
     width: 250px;
 }
 .frame > p {
@@ -358,5 +370,9 @@ div#userInfo > div  {
 
 .only_users_post {
     display: block !important;
-    margin: 0 auto !important;
+    /*margin: 0 auto !important;*/
 }
+
+/*.only_users_post > .frame {*/
+    /*margin: 0 auto;*/
+/*}*/

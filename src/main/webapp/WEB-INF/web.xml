@@ -79,4 +79,13 @@
         <servlet-name>popupWindow</servlet-name>
         <url-pattern>/popup</url-pattern>
     </servlet-mapping>
+    <!--remove post ajax-->
+    <servlet>
+        <servlet-name>removePost</servlet-name>
+        <servlet-class>servlets.RemoveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>removePost</servlet-name>
+        <url-pattern>/remove</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -15,15 +15,18 @@ public class PostDaoImpl implements PostDao {
 
             session.save(post);
 
+
+
         }
     }
 
     @Override
     public void removePost(Post post) {
         try (Session session = HibernateRefactor.getSession()) {
+            session.beginTransaction();
 
-            session.delete(post);
-
+            session.remove(post);
+            session.getTransaction().commit();
         }
     }
 

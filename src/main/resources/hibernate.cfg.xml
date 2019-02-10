@@ -4,7 +4,9 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:postgresql://35.203.169.117/postgres</property>
+        <!--<property name="connection.url">jdbc:postgresql://35.203.169.117/postgres</property>-->
+        <property name="connection.url">jdbc:postgresql://localhost:5432/postgres</property>
+        <!--<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>-->
         <property name="connection.driver_class">org.postgresql.Driver</property>
         <property name="connection.username">postgres</property>
         <property name="connection.password">1</property>
@@ -12,6 +14,5 @@
         <property name="hibernate.current_session_context_class">thread</property>
         <mapping class="entities.User"/>
         <mapping class="entities.Post"/>
-
     </session-factory>
 </hibernate-configuration>

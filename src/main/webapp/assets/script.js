@@ -3,7 +3,7 @@ var postQuantity;
 
 function fitting(postH, postQuantity, maxHeight){
     if( postH * postQuantity <= maxHeight || postQuantity === 0) {
-        $(".frame_container").height(postH * postQuantity + postQuantity + 25)
+        $(".frame_container").height((postH + 25) * postQuantity)
     } else {
         $(".frame_container").height(maxHeight)
     }
@@ -54,10 +54,24 @@ function openLiked(post) {
     });
 }
 
+function remove(post) {
+    let id = $(post).parent().data("id");
+    $.ajax({
+        type: "POST",
+        url: "/remove",
+        data: {"postid": id},
+        cache: false,
+        success: function(response){
+            hidePost(post)
+        }
+    });
+}
+
 $(document).ready(function(){
+    let time;
+    let out;
 
     if($(".error_content").children().length === 0) {
-        console.log("ok");
         $(".star_char").hide();
     }
 
@@ -69,9 +83,25 @@ $(document).ready(function(){
     });
 
     $(".post").mouseover(function() {
+        let post = $(this);
+        window.clearTimeout(out);
+        out = null;
+        if (!time) {
+            time = window.setTimeout(function() {
+                post.children(".rmv_btn").show("fast");
+            }, 600);
+        }
         $(this).css("background-color","rgba(255, 255, 255, 0.35)");
         $(this).css("transform","scale(1.01)");
+
     }).mouseout(function() {
+        let post = $(this);
+        window.clearTimeout(time);
+        time = null;
+        out = window.setTimeout(function(){
+            post.children(".rmv_btn").hide("fast");
+        }, 2);
+
         $(this).css("background-color","rgba(255, 255, 255, 0.2)");
         $(this).css("transform","scale(1)");
     });
@@ -133,4 +163,15 @@ function validateForm() {
     password.toggleClass('error_form', v_pass1);
     passwordConfirm.toggleClass('error_form', v_pass2);
     return (v_login || v_pass1 || v_pass2);
+}
+
+function hidePost(post) {
+    let frame = $(post).parent().parent();
+
+    frame.animate({
+        opacity:0,
+    }, 600).animate({
+        height:0,
+        margin:0
+    },500)
 }

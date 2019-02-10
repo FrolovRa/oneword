@@ -88,6 +88,7 @@
                                         TimeOfPublications.getTimeDifference(p.getDate()) +
                                 "          </p>\n" +
                                 "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
+                                 "           <div class=\"rmv_btn\" onclick=\"remove(this)\"></div> " +
                                 "            <div class=\"like\" onclick=\"like(this)\" ");
                         if (u.getFavorite().contains(p)){
                             out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");
