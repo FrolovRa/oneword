@@ -51,10 +51,14 @@ public class CrudPostServlet extends HttpServlet {
         UserDao dao = new UserDaoImpl();
         HttpSession session = request.getSession();
 
-        User u = (User) session.getAttribute("user");
-        session.setAttribute("user", dao.getUser(u.getId()));
+        if (session.getAttribute("role").equals("user")) {
+            User u = (User) session.getAttribute("user");
+            session.setAttribute("user", dao.getUser(u.getId()));
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/mypage.jsp");
-        dispatcher.forward(request, response);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/mypage.jsp");
+            dispatcher.forward(request, response);
+        }  else {
+            response.sendRedirect("/");
+        }
     }
 }

@@ -37,8 +37,5 @@ public class RemoveServlet extends HttpServlet {
         dao.removePost(dao.getPost(postId));
 
         response.sendRedirect("/my-page");
-
-//        request.getSession().setAttribute("user", );
-
     }
 }

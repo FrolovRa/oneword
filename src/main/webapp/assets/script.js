@@ -39,19 +39,23 @@ function openFollowing() {
     });
 }
 
-function openLiked(post) {
-    $(".window_header h5").html("liked");
-    $(".follows_following_window").show("fast");
-    let id = $(post).data("id");
-    $.ajax({
-        type: "POST",
-        url: "/popup",
-        data: {"uid": id, "query": "like"},
-        cache: false,
-        success: function(response){
-            $(".window_content").html(response);
-        }
-    });
+function openLiked(like) {
+    let post = $(like).parent();
+    console.log($(like).html());
+    if($(like).html() !== "0") {
+        $(".window_header h5").html("liked");
+        $(".follows_following_window").show("fast");
+        let id = $(post).data("id");
+        $.ajax({
+            type: "POST",
+            url: "/popup",
+            data: {"uid": id, "query": "like"},
+            cache: false,
+            success: function(response){
+                $(".window_content").html(response);
+            }
+        });
+    }
 }
 
 function remove(post) {

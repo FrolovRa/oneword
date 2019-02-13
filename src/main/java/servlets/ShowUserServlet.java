@@ -22,17 +22,24 @@ public class ShowUserServlet extends HttpServlet {
         int id = Integer.valueOf(pathInfo.substring(1));
 
         UserDao dao = new UserDaoImpl();
+        User u = dao.getUser(id);
 
         HttpSession session = request.getSession();
-        User su = (User) session.getAttribute("user");
+        if (session.getAttribute("role").equals("user")){
+            User su = (User) session.getAttribute("user");
 
-        if(su.getId() == id) {
-            response.sendRedirect("/my-page");
+            if(su.getId() == id) {
+                response.sendRedirect("/my-page");
+            } else {
+                request.setAttribute("user", u);
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/views/usersPage.jsp");
+                dispatcher.forward(request, response);
+            }
         } else {
-            User u = dao.getUser(id);
             request.setAttribute("user", u);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/usersPage.jsp");
             dispatcher.forward(request, response);
         }
+
     }
 }

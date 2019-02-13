@@ -10,10 +10,12 @@ import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Base64;
 
 /*
  *
@@ -37,8 +39,9 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
         User user = dao.LogInUser(username, pass);
 
         if(user != null){
-            if( user.getUsername().equals(username) & user.getPassword().equals(pass)){
+            if(user.getUsername().equals(username) & user.getPassword().equals(pass)){
                 session.setAttribute("user", user);
+                session.setAttribute("role", "user");
                 response.sendRedirect("/my-page");
             } else {
                 request.setAttribute("userName", "not correct password or username");

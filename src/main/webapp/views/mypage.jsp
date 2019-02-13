@@ -95,15 +95,14 @@
                         }
                         out.print(
                                 "             >\n " +
-                                        "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked($(this).parent())\"> " +
+                                        "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked(this)\">" +
                                         p.getLiked().size() +
-                                        "            </div>" +
+                                        "</div>" +
                                         "            <p class=\"content\">" + p.getWord() + "</p>\n" +
                                         "            <div class=\"username_wrapper\"><h6 class=\"username\">"
                                         + p.getOwner_id().getUsername() + "</h6> </div>"  +
                                         "          </div>\n" +
                                         "        </div>");
-
                     }
                 }
             %>
@@ -125,9 +124,9 @@
                 }
                         out.print(
                 "             >\n " +
-                "            </div>\n" + "<div class=\"like_count\"> " +
+                "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked(this)\">" +
                             p.getLiked().size() +
-                "            </div>" +
+                "</div>" +
                 "            <p class=\"content\">" + p.getWord() + "</p>\n" +
                 "            <div class=\"username_wrapper\"><h6 class=\"username\">"
                             + p.getOwner_id().getUsername() + "</h6> </div>"  +

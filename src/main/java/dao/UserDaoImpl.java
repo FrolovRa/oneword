@@ -5,7 +5,6 @@ import entities.User;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
-import javax.ejb.Stateless;
 import java.util.List;
 
 

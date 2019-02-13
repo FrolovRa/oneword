@@ -46,22 +46,42 @@
             </svg></div>
 
             <div><%
+                String role = (String) session.getAttribute("role");
+                Boolean usrRole = role.equals("user");
+
                 User u = (User) request.getAttribute("user");
                 out.print(u.getUsername());
             %></div >
-            <div id="followers" class="follows" onclick="openFollows()"><%
+             <%
+                out.print("<div id=\"followers\" class=\"follows\"" );
+                if(usrRole) {
+                    out.print("onclick=\"openFollows()\">");
+                } else {
+                    out.print(">");
+                }
                 out.print("Followers " + u.getFollowers().size());
             %></div>
-            <div id="following" class="following" onclick="openFollowing()"><%
+            <%
+                out.print("<div id=\"following\" class=\"following\"" );
+                if(usrRole) {
+                    out.print("onclick=\"openFollowing()\">");
+                } else {
+                    out.print(">");
+                }
                 out.print("Following " + u.getFollowing().size());
             %></div>
         </div>
         <div class="subscribe_container">
             <button type="button" data-id="<% out.print(u.getId()); %>" onclick="subscribe(this)"><%
-                User su = (User) session.getAttribute("user");
-            if(su.getFollowing().contains(u)) {
-                out.print("unfollow");
-            } else out.print("follow");
+                User su = null;
+                if(usrRole) {
+                    su = (User) session.getAttribute("user");
+                    if(su.getFollowing().contains(u)) {
+                        out.print("unfollow");
+                    } else out.print("follow");
+                } else {
+                  out.print("Log in for following");
+                }
             %></button>
         </div>
         <div class="frame_container only_users_post">
@@ -75,17 +95,22 @@
                                 TimeOfPublications.getTimeDifference(p.getDate()) +
                                 "           </p>\n" +
                                 "          <div class=\"post\" data-id=\""+ p.getPostId() + "\">\n" +
-                                "            <div class=\"like\" onclick=\"like(this)\" ");
-                        if (su.getFavorite().contains(p)){
-                            out.print("style=\"background-image: url('/assets/icon-heart-on.png')\"");
+                                "            <div class=\"like\"");
+                        if(usrRole) {
+                            if (su.getFavorite().contains(p)){
+                                out.print(" onclick=\"like(this)\" style=\"background-image: url('/assets/icon-heart-on.png')\"");
+                            }
                         }
-                        out.print(
-                                "             >\n " +
-                                "            </div>\n" + "<div class=\"like_count\" onclick=\"openLiked($(this).parent())\"> " +
-                                                p.getLiked().size() +
-                                "            </div>" +
+                        out.print("          >\n " +
+                                "         </div>\n" + "<div class=\"like_count\"");
+                        if(usrRole) {
+                            out.print("onclick=\"openLiked(this)\">");
+                        } else {
+                            out.print(">");
+                        }
+                        out.print(p.getLiked().size() + "</div>" +
                                 "            <p class=\"content\">" + p.getWord() + "</p>\n" +
-                                        "            <div class=\"username_wrapper\"><h6 class=\"username\">"
+                                "            <div class=\"username_wrapper\"><h6 class=\"username\">"
                                         + p.getOwner_id().getUsername() + "</h6> </div>"  +
                                 "          </div>\n" +
                                 "        </div>");
