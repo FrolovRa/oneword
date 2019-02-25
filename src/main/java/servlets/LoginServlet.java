@@ -48,7 +48,7 @@ public class LoginServlet extends javax.servlet.http.HttpServlet {
                 doGet(request,response);
             }
         } else {
-            request.setAttribute("userName", username);
+            request.setAttribute("username", username);
             doGet(request, response);
         }
     }

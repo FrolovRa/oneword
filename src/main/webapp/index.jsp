@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <title>One Word</title>
     <link rel="stylesheet" type="text/css" href="assets/main.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="assets/script.js"></script>
 </head>
 <body>
 <!-- header -->
@@ -23,13 +25,20 @@
             <span> or </span>
             <a href="${pageContext.request.contextPath}/signing">Sign in</a>
         </form>
-          <%
-              if (request.getAttribute("userName") != null) {
-                  out.println("<p>User " + request.getAttribute("userName") + " does not exist</p>");
-              }
-          %>
       </div>
   </div>
+    <div class="error_anchor">
+        <div class="error">
+            <div class="star_char">*</div>
+            <div class="error_content">
+                <%
+                    if (request.getAttribute("username") != null) {
+                        out.println("<p class=\"text-error\">User " + request.getAttribute("username") + " does not exist</p>");
+                    }
+                %>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>

@@ -25,27 +25,8 @@ import java.io.IOException;
  *
  */
 
-@WebServlet(name = "CrudPostServlet")
-public class CrudPostServlet extends HttpServlet {
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf8");
-        String word = request.getParameter("word");
-
-        HttpSession session = request.getSession();
-        User u = (User) session.getAttribute("user");
-
-        Post post = new Post(word);
-        PostDao dao = new PostDaoImpl();
-
-        post.setOwner_id(u);
-
-        dao.addPost(post);
-        u.getPosts().add(post);
-
-        session.setAttribute("user", u);
-        response.sendRedirect("/my-page");
-    }
+@WebServlet(name = "HomePageServlet")
+public class HomePageServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserDao dao = new UserDaoImpl();

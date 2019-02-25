@@ -21,10 +21,19 @@
         <servlet-name>SignServlet</servlet-name>
         <url-pattern>/signing</url-pattern>
     </servlet-mapping>
+    <!--create post servlet-->
+    <servlet>
+        <servlet-name>createPost</servlet-name>
+        <servlet-class>servlets.CreatePostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createPost</servlet-name>
+        <url-pattern>/create-post</url-pattern>
+    </servlet-mapping>
     <!--my page servlet-->
     <servlet>
         <servlet-name>myPage</servlet-name>
-        <servlet-class>servlets.CrudPostServlet</servlet-class>
+        <servlet-class>servlets.HomePageServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>myPage</servlet-name>
@@ -82,10 +91,19 @@
     <!--remove post ajax-->
     <servlet>
         <servlet-name>removePost</servlet-name>
-        <servlet-class>servlets.RemoveServlet</servlet-class>
+        <servlet-class>servlets.RemovePostServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>removePost</servlet-name>
         <url-pattern>/remove</url-pattern>
+    </servlet-mapping>
+    <!--logout user-->
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

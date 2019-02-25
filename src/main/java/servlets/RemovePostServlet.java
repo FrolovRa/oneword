@@ -26,7 +26,7 @@ import java.io.IOException;
  */
 
 @WebServlet(name = "RemoveServlet")
-public class RemoveServlet extends HttpServlet {
+public class RemovePostServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

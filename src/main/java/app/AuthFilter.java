@@ -34,10 +34,8 @@ public class AuthFilter implements Filter {
 
             HttpSession session = request.getSession(true);
             String authHeader = (String) session.getAttribute("role");
-            System.out.println(authHeader);
             if (authHeader == null) {
                 try {
-                    System.out.println("in try catch");
                     session.setAttribute("role", "guest");
                     filterChain.doFilter(servletRequest, servletResponse);
                 } catch (UnsupportedEncodingException e) {

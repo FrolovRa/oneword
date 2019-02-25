@@ -23,14 +23,31 @@
         <h1>OneWord</h1>
     </div>
     <div class="search_wrapper">
-        <div class="search_icon"><img src="../assets/icons-search.png" alt="search"></div>
-        <div>
+        <div class="home_btn" onclick="location.href = '/my-page'">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="28" height="28" viewBox="0 0 224 224" style=" fill:#000000;">
+                <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                   text-anchor="none" style="mix-blend-mode: normal">
+                    <path d="M0,224v-224h224v224z" fill="none"></path>
+                    <g fill="#ffffff">
+                        <g id="surface1">
+                            <path d="M112,18.15625l-5.03125,4.8125l-91,91l10.0625,10.0625l8.96875,-8.96875v80.9375h63v-70h28v70h63v-80.9375l8.96875,8.96875l10.0625,-10.0625l-91,-91zM112,38.0625l63,63v80.9375h-35v-70h-56v70h-35v-80.9375z"></path>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <!-- <div class="search_icon"><img src="assets/icons-search.png" alt="search"></div> -->
+        <div class="search">
             <input id="search_input" autocomplete="off" type="text" name="search">
             <div class="search_result" style="display:none">
-                <ul>
-
-                </ul>
+                <ul></ul>
             </div>
+        </div>
+        <div class="logout" onclick="logout()">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                 width="28" height="28"
+                 viewBox="0 0 224 224"
+                 style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,224v-224h224v224z" fill="none"></path><g fill="#ffffff"><g id="surface1"><path d="M35,21v182h126v-40.6875l-7.65625,-7.4375l-5.90625,-6.125h-0.4375v40.25h-98v-154h98v40.6875l6.34375,-6.5625l7.65625,-7.4375v-40.6875zM163.40625,78.96875l-10.0625,10.0625l15.96875,15.96875h-85.3125v14h85.3125l-15.96875,15.96875l10.0625,10.0625l28,-28l4.8125,-5.03125l-4.8125,-5.03125z"></path></g></g></g></svg>
         </div>
     </div>
     <div>
@@ -46,8 +63,8 @@
                         </g>
                     </g>
                 </g>
-            </svg></div>
-
+            </svg>
+            </div>
             <div><%
                 User u = (User) session.getAttribute("user");
                 out.print(u.getUsername());
@@ -61,10 +78,12 @@
             %></div>
         </div>
         <div class="add-post">
-            <form method="post">
+            <form id="word_form">
                 <div id="label_input">Enter the word</div>
                 <div id="input_word"><input id="word_input"  maxlength="20" autocomplete="off" type="text" placeholder="here!" name="word"></div>
-                <div id="btn_send"><button id="sendWord" type="submit"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 224 224" style=" fill:#000000;">
+                <div id="btn_send">
+                    <button id="sendWord" type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 224 224" style=" fill:#000000;">
                     <g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
                        text-anchor="none" style="mix-blend-mode: normal">
                         <path d="M0,224v-224h224v224z" fill="none"></path>
@@ -83,7 +102,7 @@
                     out.print("<p style='text-align: center'> do not have words yet </p>");
                 } else {
                     for (Post p:u.getPosts()) {
-                        out.print("<div class=\"frame\">\n" +
+                        out.print("<div class=\"frame \" >\n" +
                                 "           <p> " +
                                         TimeOfPublications.getTimeDifference(p.getDate()) +
                                 "          </p>\n" +

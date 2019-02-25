@@ -381,3 +381,18 @@ div#userInfo > div  {
 /*.only_users_post > .frame {*/
     /*margin: 0 auto;*/
 /*}*/
+
+.new-post {
+    height: 0 ;
+    margin: 0 auto auto;
+    opacity: 0;
+}
+
+.home_btn {
+    cursor: pointer;
+}
+
+.logout {
+    padding-left: 7px;
+    cursor: pointer;
+}
